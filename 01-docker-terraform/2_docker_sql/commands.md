@@ -27,6 +27,17 @@ python ingest_data.py `
 ## Pgadmin docker run
 ```
 docker run -it `
+  -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" `
+  -e PGADMIN_DEFAULT_PASSWORD="root" `
+  -p 8080:80 `
+  --network=pg-network `
+  --name pgadmin-2 `
+  dpage/pgadmin4
+```
+
+## Run data ingestion Python script from docker
+```
+docker run -it `
   --network=pg-network `
   taxi_ingest:v001 --user=root `
   --password=root `
@@ -35,15 +46,4 @@ docker run -it `
   --db=ny_taxi `
   --table_name=yellow_taxi_trips `
   --url="./yellow_tripdata_2021-01.csv"
-```
-
-## Run data ingestion Python script from docker
-```
-docker run -it `
-  -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" `
-  -e PGADMIN_DEFAULT_PASSWORD="root" `
-  -p 8080:80 `
-  --network=pg-network `
-  --name pgadmin-2 `
-  dpage/pgadmin4
 ```
